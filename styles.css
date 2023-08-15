@@ -1,0 +1,838 @@
+:root{
+    --background-gray: rgba(211,211,211,0.5)
+}
+
+
+html{
+    font-size: 16px;
+}
+
+body{
+    box-sizing: border-box;
+    margin:0;
+    padding: 3rem 4rem;
+    font-family: 'Manrope', sans-serif;
+    background-image: url(./assets/penthouse.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+    
+    height: 100vh;
+    color: white;
+}
+/* media queries */
+@media  (max-width: 767.98px){
+    body{
+        padding:0 1rem;
+        padding-bottom: 2rem;
+        padding-top: 1rem;
+    }
+
+    .button-container{   
+    gap: 0.25rem !important;
+    }
+
+    #start-btn{
+        width: fit-content !important;
+    }
+
+    .time button{
+        width: 7rem !important;
+    }
+
+    .time button h2{
+        font-size: 1rem;
+    }
+
+    .setting-contianer h3{
+        display: none !important;
+    }
+
+
+    .icon{
+        width: 2rem !important;
+        height: 2rem !important;
+    }
+
+    .music-icon-container{
+        height: 2rem !important;
+    }
+
+    .sound-icon{
+        height: 1.75rem !important;
+        width: 1.75rem !important ;
+    }
+
+    .container{
+        min-width: 0rem !important;
+    }
+
+    .ui-main{
+        flex-direction: column !important;
+       
+    }
+    .option-container{
+        gap: 1rem;
+        width: 80% !important;
+        
+    }
+    .choice-column{
+        flex-direction: row !important;
+    }
+
+    #mixer-main{
+        width: 80% !important;
+    }
+
+    .ui-footer, .ui-header{
+        padding: 0 1rem !important;
+    }
+
+    .select-btn{
+        width: 5.9rem !important;
+        height: 2rem !important;
+        font-size: 1rem !important;
+    }
+
+    .caret{
+        height: 0.5rem !important;
+        width: 0.5rem !important;
+        margin-bottom: 0.5rem !important;
+    }
+
+    .dropdown.active .caret{
+        margin-top: 0.5rem;
+    } 
+
+    .dropdown-menu{
+        width: 5.9rem !important;
+    }
+
+    .dropdown-content{
+        height: 2rem !important;
+    }
+
+    .bar{
+        width: 0.33rem !important;
+    }
+
+    .volume{
+        height: 0.6rem !important;
+    }
+
+    .volume::-webkit-slider-thumb{
+        height: 0.8rem !important;
+        width: 0.8rem !important;
+    }
+
+    .popout{
+        gap: 0.4rem !important;
+    }
+
+    .music-container.active .popout {
+        transform: translateX(0.4rem) !important;
+    }
+}
+/* typography */
+.h0{
+    font-size: 6rem;
+    font-weight: 600;
+    margin: 0;
+}
+
+h1{
+    font-size: 48px;
+    margin: 0;
+
+}
+
+h2{
+    font-size: 32px;
+    margin: 0;
+}
+
+h3{
+    font-size: 24px;
+    margin: 0;
+}
+
+h4{
+    font-size: 18px;
+    margin: 0;
+}
+
+p{
+    font-size: 16px;
+    margin: 0;
+}
+
+/* header */
+
+header{
+    height: 10%;
+    display: flex;
+    justify-content: space-between;
+
+}
+.logo-container{
+    text-shadow: 3px 5px 2px #474747
+}
+.logo-container h3{
+    text-align: right;
+    font-family: 'Caveat', cursive;
+    
+}
+.setting-contianer{
+    display: flex;
+    height: fit-content;
+}
+
+.setting-contianer h3{
+    display: flex;
+    align-items: center;
+}
+
+.setting-contianer:hover{
+    cursor: pointer;
+}
+.setting-icon{
+    width:2rem;
+    aspect-ratio: 1;
+    background-image: url(./assets/setting-filled.svg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+    margin-right:0.5rem
+}
+.setting-contianer h3{
+    background-color: var(--background-gray);
+    padding: 0.15rem;
+    border-radius: 0.5rem;
+}
+
+.icon-contianer{
+    height: fit-content;
+    width: fit-content;
+}
+/* button styles */
+.time button{
+    background-color: transparent;
+    border: white solid;
+    border-radius: 5rem;
+    color: white;
+    width: 13rem;
+}
+
+.time button h2{
+    font-weight: 300;
+    margin: 0.5rem;
+}
+
+.start{
+    background-image: url(assets/start.svg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center; 
+}
+
+.start.active{
+    background-image: url(assets/stop.svg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center; 
+}
+
+
+.time button:active{
+    background-color: white;
+    color: black;
+}
+/* main */
+main{
+    height: 85%;
+    display: flex;
+}
+.time{
+    
+    height: 50%;
+    
+    margin: auto;
+    width: 100%;
+   display: flex;
+   flex-direction: column;
+   gap:2rem;
+   justify-content: center;
+}
+.timer{
+    border-radius: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 25rem;
+    width: 100%;
+    min-width: 20rem;
+    height: 35%;
+    text-shadow: 3px 5px 2px #474747;
+    margin: 0 auto;
+}
+.time-controller-container{
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+}
+.button-container{
+    display: grid;
+    grid-auto-flow: column;
+    grid-template-columns: 1fr min-content 1fr;
+    gap: 1rem;
+    justify-content: center;
+}
+.button.active {
+    background-color: white;
+    color: black;
+}
+
+#focus-btn{
+    justify-self: end;
+}
+
+.container{
+    width: 100%;
+    max-width: 46.25rem;
+    min-width: 36rem;
+    height: 100%;
+    max-height: 30rem;
+    margin: auto;
+    background-color: rgba(0,0,0,0.7);
+    border-radius: 1rem;
+    padding: 1rem;
+    box-sizing: border-box;
+    
+    
+}
+
+.reset{
+    background-image: url(assets/refresh.svg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center; 
+}
+
+/* settings ui */
+.settings{
+    display:none;
+}
+#timers-button:hover, #alerts-button{
+    cursor: pointer;
+}
+#timers-button{
+    text-decoration: underline;
+}
+.ui-main{
+    height: 70%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.choice-column{
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 20%;
+    gap:2rem;
+    text-align: center;
+}
+
+.option-container{
+    display:flex;
+    height: 80%;
+    width: 60%;
+    justify-content: space-around;
+    padding: 2rem 0; 
+}
+
+.option-columns{
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+}
+.ui-main label{
+    font-weight: 600;
+    font-size: 1.5rem;
+}
+#timers-options{
+    display: flex;
+}
+
+.input-times{
+    width: 80%;
+    background-color: transparent;
+    border: solid 1px white;
+    color: white;
+    height: 2rem;
+    border-radius: 1rem;
+    font-size: 1.5rem;
+    text-align: center;
+}
+
+.input-times::-webkit-inner-spin-button,
+.input-times::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+
+#alerts-options{
+    display: none;
+    flex-direction: column;
+    justify-content: space-around;
+
+}
+.select-btn{
+    background-color: transparent;
+    border: solid 1px white;
+    width: 10.18rem;
+    height: 4rem;
+    color: white;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    font-size: 2rem;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap:1rem ;
+}
+
+.select-btn::after{
+    content: '';
+    display: block;
+   pointer-events: none;
+    width: 1rem;
+    height: 1rem;
+    border-bottom: solid 2px white;
+    border-right:  solid 2px white ;
+    transform: rotate(45deg);
+    margin-bottom: 1rem;
+    transition: transform 150ms ease-in-out, margin 150ms ease-in-out;
+}
+
+
+
+.dropdown.active .select-btn::after{
+    transform: rotate(-135deg);
+    margin-bottom: 0;
+    margin-top: 1rem;
+    
+} 
+
+
+.dropdown{
+    position: relative;
+}
+
+.dropdown-menu{
+    z-index: 2;
+    box-sizing: border-box;
+    
+    width: 10.18rem;
+    position: absolute;
+    color: white;
+    left: 0;
+    top: calc(100% + 1rem);
+    background-color: #6F6E6E;
+    border: 1px solid white;
+    border-radius: 0.5rem;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(-10px);
+    transition: opacity 150ms ease-in-out, transform 150ms ease-in-out;
+}
+
+.dropdown-content{
+    padding: 0.75rem;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 4rem;
+    color: white;
+    background-color: transparent;
+    cursor: pointer;
+    border-radius: 0.5rem;
+}
+
+.dropdown-content:hover{
+    background-color: #A3A3A3;
+}
+
+.dropdown-content.active{
+    background-color: #A3A3A3;
+    z-index: 3;
+}
+
+
+.dropdown.active > .select-btn + .dropdown-menu{
+    pointer-events: auto;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+
+
+.row{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+.ui-footer{
+    height: 10%;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 4rem;
+    padding-bottom: 1rem;
+}
+
+#save{
+    border: solid white;
+}
+
+#reset{
+    background-color: transparent;
+    border: solid red;
+    color: red;
+}
+
+#reset:active{
+    background-color: red;
+    color: black;
+}
+
+
+.ui-btn {
+    height: 2rem;
+    border-radius: 1rem;
+    width: 7rem;
+}
+
+.ui-btn:hover{
+    cursor: pointer;
+}
+/* on-off toggle */
+.on-off-toggle{
+    cursor: pointer;
+    height: 2rem;
+    width: 4rem;
+    background-color: var(--background-gray);
+    border-radius: 1rem;
+    padding: 0 0.13rem;
+    display:inline-flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+
+
+.off{
+    margin-right: 0.5rem;
+    order: 2;
+    transition: order 200ms ease-in-out;
+}
+
+.circle{
+    justify-self: start;
+    height: 1.8rem;
+    aspect-ratio: 1;
+    border-radius: 1rem;
+    background-color: white;
+    order: 1;
+    transition: order 200ms ease-in-out;
+    position: relative;
+}
+
+.circle::after{
+    color: white;
+    content: 'Off';
+    position: absolute;
+    display: block;
+    right: -1.75rem;
+    top: 0.25rem;
+    
+
+}
+
+.on-off-toggle.active{
+    background-color:#1C85E5 ;
+    justify-content: flex-end;
+}
+
+.on-off-toggle.active  .circle::before{
+    color: white;
+    content: 'On';
+    position: absolute;
+    display: block;
+    left: -1.75rem;
+    top: 0.25rem;
+    
+}
+
+.on-off-toggle.active  .circle::after{
+    content: '';
+    position: absolute;
+    display: block;
+    left: -1.75rem;
+    top: 0.25rem;
+    
+}
+
+
+/* x icon for exit */
+.ui-header{
+    height: 10%;
+    display: flex;
+    justify-content: end;
+    padding: 0 4rem;
+    padding-top: 1rem;
+}
+
+.exit-container{
+    position: relative;
+    height: 2rem;
+    width: 2rem;
+    
+}
+
+.exit-container:hover{
+    cursor: pointer;
+}
+.x-one,.x-two{
+    height: 3px;
+    background-color: white;
+    width: 1.8rem;
+    position: absolute;
+    top: 50%; 
+    left: 50%; 
+}
+
+.x-one{
+    transform: translate(-50%, -50%) rotate(45deg);
+}
+.x-two{
+    transform: translate(-50%, -50%) rotate(-45deg);
+}
+/* mixer */
+.mixer-container{
+    display: none;
+}
+#mixer-header{
+    justify-content: space-between;
+}
+.mixer2{
+    width:2rem;
+    aspect-ratio: 1;
+    background-image: url(./assets/mixer-vertical\ \(1\).svg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+    margin-right:0.5rem
+}
+.more-sound{
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+#mixer-main{
+    flex-direction: column;
+    align-items: center;
+    width: 50%;
+    margin: 0 auto;
+}
+.mixer-container input{
+    width: 100%;
+}
+.mixer-options{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+   
+/* footer */
+
+footer{
+    height: 10%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.mixer{
+    background-image: url(./assets/mixer-vertical\ \(1\).svg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+    margin-right:0.5rem
+}
+
+.mixer:hover{
+    cursor: pointer;
+}
+
+.music-container{
+    cursor: pointer;
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.music-icon-container{
+    height: 3.31rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.25rem;
+}
+
+.popout{
+    display: flex;
+    align-items: center;
+    position: absolute;
+    top: 0;
+    left: 100%;
+    transform: translateX(-30px);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 150ms ease-in-out, transform 150ms ease-in-out;
+    gap: 1rem;
+}
+
+.music-container.active .popout {
+    opacity: 1;
+    transform: translateX(1rem);
+    pointer-events: auto;
+}
+
+
+.bar{
+    border-radius: 1rem;
+    width: 0.67rem;
+    background-color: white;
+    height: 100%;
+}
+
+.short{
+    height: 70%;
+}
+
+.animate{
+    animation: animate 1.2s linear infinite;
+}
+
+@keyframes animate {
+    50%{
+        height: 60%;
+    }
+
+    100%{
+        height: 100%;
+    }
+}
+
+
+
+.bar:nth-child(2){
+    animation-delay: 0.2s;
+}
+
+
+
+.bar:nth-child(4){
+    animation-delay:0.2s ;
+}
+
+
+.icon{
+    width: 3.31rem;
+    height: 3.31rem;
+    cursor: pointer; 
+}
+
+
+.play{
+    background-image: url(assets/play-24.svg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+}
+
+.pause{
+    background-image: url(assets/pause-outline.svg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center; 
+}
+
+.sound-icon{
+    background-image: url(assets/speaker-2-24-filled\ \(1\).svg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+}
+
+.mute{
+    background-image: url(assets/speaker-off-24-filled.svg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+}
+
+
+/* slider */
+
+.volume{
+    -webkit-appearance: none;
+    height: 1rem;
+    outline: none;
+    background: linear-gradient(90deg, white 50%, #B5B5B5 50%);
+    border-radius: 1rem;
+    -webkit-transition: 0.2s;
+    transition: opacity 0.2s;
+    transform: translateX(0);
+    opacity: 1;
+    transition: opacity 150ms ease-in-out, transform 150ms ease-in-out;
+}
+
+
+
+.volume::-webkit-slider-thumb{
+    -webkit-appearance: none;
+    appearance: none;
+    height: 1.4rem;
+    width: 1.4rem;
+    background-color: white;
+    border-radius: 1rem;
+    cursor: pointer;
+}
+
+.slider::-moz-range-thumb{
+    -webkit-appearance: none;
+    appearance: none;
+    height: 1.4rem;
+    width: 1.4rem;
+    background-color: white;
+    border-radius: 1rem;
+    cursor: pointer;
+}
+
+#speaker.mute + .volume{
+    transform: translateX(-10px);
+    opacity: 0;
+    transition: opacity 150ms ease-in-out, transform 150ms ease-in-out;
+    pointer-events: none;
+}

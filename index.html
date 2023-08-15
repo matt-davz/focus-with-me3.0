@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=Manrope:wght@200;300;600&display=swap" rel="stylesheet">   
+<link rel="stylesheet" href="./styles.css">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Focus With Me</title>
+    <script src="script.js" defer></script>
+    <audio id="lofi" src="./assets/sound/lofi.mp3" loop></audio>
+    <audio id="bird-sound" src="./assets/sound/bird.mp3" loop></audio>
+    <audio id="keyboard" src="./assets/sound/keyboard.mp3" loop></audio>
+    <audio id="chirp" src="./assets/sound/chirp.mp3"></audio>
+    <audio id="chime" src="./assets/sound/chime.mp3"></audio>
+    <audio id="alarm" src="./assets/sound/alarm.mp3"></audio>
+    <audio  id="bell" src="./assets/sound/bell.mp3"></audio>
+</head>
+<body>
+    <header>
+        <div class="logo-container">
+            <h2>focus with me</h2>
+            <h3>by M & M</h3>
+        </div>
+        <div class="setting-contianer">
+            <div class="setting-icon icon"></div>
+            <h3>settings</h3>
+        </div>
+    </header>
+    <main>
+        <div  class="time">
+            <div class="button-container">
+                 <button  id="focus-btn" class="button phase active"><h2>focus</h2></button>
+                 <button id="short-break-btn" class="button phase"><h2>short break</h2></button> 
+                <button id="long-break-btn" class="button phase"><h2>long break</h2></button>
+            </div>
+            <div class="timer">
+                <h1 class="h0" id="minutes">25</h1><h1>:</h1><h1 class="h0" id="seconds">00</h1>
+            </div>
+            <div class="time-controller-container">
+                <div class="start icon"></div>
+                <div id="reset-icon" class="reset icon"></div>
+            </div>
+        </div>
+        <div class="settings  container">
+            <div class="ui-header">
+                <div class="exit-container">
+                    <div class="x-one"></div>
+                    <div class="x-two"></div>
+                </div>
+            </div>
+            <div class="ui-main">
+                <div class="choice-column">
+                    <h2 id="timers-button">Timers</h2>
+                    <h2 id="alerts-button">Alerts</h2>
+                </div>
+                <div id="timers-options" class="option-container">
+                    <div class="option-columns">
+                        <label class="options" for="">Focus</label>
+                        <input  id="focus-input" class="input-times" type="number" value="25">
+                    </div>
+                    <div class="option-columns">
+                        <label class="options" for="">Short</label>
+                        <input  id="short-input" class="input-times" type="number" value="5">
+                    </div>
+                    <div class="option-columns">
+                        <label class="options" for="">Long</label>
+                        <input  id="long-input" class="input-times" type="number" value="15">
+                    </div>
+                </div>
+                <div id="alerts-options" class="option-container">
+                    <div class="row">
+                        <label for="">Alerts</label>
+                        <div id="alert-toggle" class="on-off-toggle active">
+                            <div class="circle"></div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <label for="">Select Alert Sound:</label>
+                        <div class="dropdown" data-dropdown>
+                            <button class="select-btn" data-dropdown-button>Chime <div class="caret"></div></button>
+                            <div class="dropdown-menu">
+                                <div id="dd-alarm" class="dropdown-content">Alarm</div>
+                                <div  id="dd-bell" class="dropdown-content">Bell</div>
+                                <div  id="dd-chime" class="dropdown-content active">Chime</div>
+                                <div  id="dd-chirp" class="dropdown-content">Bird</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <label for="">Alert Volume:</label>
+                       
+                            <input id="alert-slider" type="range" step="0.01" min="0" max="1" value="0.5"  class="volume">
+                        
+                    </div>
+                </div>
+            </div>
+            
+            <div class="ui-footer">
+                <button class="ui-btn" id="reset" onclick="reset()">Reset all</button>
+                <button onclick="updateTimes()" id="settings-save" class="ui-btn" id="save">Save Changes</button>
+            </div>
+        </div>
+        <div class="mixer-container container">
+            <div id="mixer-header" class="ui-header">
+                <div class="more-sound">
+                    <h2>More Sound</h2>
+                    <div class="mixer2"></div>
+                </div>
+                <div class="exit-container">
+                    <div class="x-one"></div>
+                    <div class="x-two"></div>
+                </div>
+            </div>
+            <div id="mixer-main" class="ui-main">
+                <div class="mixer-options">
+                    <label for="">Keyboard</label>
+                    <div id="keyboard-button" class="on-off-toggle">
+                        <div class="circle"></div>
+                        
+                    </div>
+                </div>   
+                <input id="keyboard-slider" type="range" step="0.01" min="0" max="1" value="0.5"  class="volume">
+                    <div class="mixer-options">
+                        <label for="">Bird Chirping</label>
+                        <div id="bird" class="on-off-toggle">
+                            <div class="circle"></div>
+                            
+                        </div>
+                    </div>
+                    <input id="bird-slider" type="range"step="0.01" min="0" max="1" value="0.5"  class="volume">
+            </div>
+            
+            <div class="ui-footer">
+                <button id="reset" onclick="reset()" class="ui-btn" >Reset all</button>
+                <button id="save" class="ui-btn" >Save Changes</button>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <div data-toggle="false" class="music-container">
+            <div class="music-icon-container">
+                <div  class="bar"></div>
+                <div id="short1" class="bar short"></div>
+                <div  class="bar"></div>
+                <div id = "short2" class="bar short"></div>
+           </div> 
+            <div class="popout">
+                <div data-toggle="false" id="play" class="play icon"></div>
+                <div id="speaker" class="sound-icon icon"></div>
+                <input type="range" step="0.01" min="0" max="1" value="0.5" id="music-volume-slider" class="volume">
+            </div>
+        </div>
+        <div id="mixer" class="mixer icon"></div>
+    </footer>
+</body>
+</html>
