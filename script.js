@@ -301,10 +301,8 @@ const longBreakBtn = document.getElementById('long-break-btn');
 const minutesDisplay = document.getElementById('minutes') 
 const secondsDisplay = document.getElementById('seconds')
 
-let workTime = minutesDisplay.innerHTML
-let breakTime = 5
-let longBreakTime = 15
-let seconds = parseFloat(secondsDisplay.innerHTML)
+
+
 
 function updateTimes () {
   if(timersOptions.style.display === 'none') return
@@ -375,9 +373,73 @@ function toggleTimer () {
 
 startButton.addEventListener('click', toggleTimer);
 
-timerWorker.onmessage = function (e){
-  const elapsedTime = Math.round(e.data/1000);
-  console.log(`Elapsed time: ${elapsedTime}`)
+timerWorker.onmessage = function (){
+  timer();
+}
+
+function convertSec (sec) {
+  if(sec < 10){
+    secondsDisplay.innerHTML = `0${sec}`
+    return
+  }
+  secondsDisplay.innerHTML = sec
+} 
+
+function convertMin (min) {
+  minutesDisplay.innerHTML = min
+}
+
+
+
+let count = 1;
+function timer() {
+  let workTime = document.getElementById('focus-input').value;
+  let breakTime = document.getElementById('short-input').value;
+  let longBreakTime = document.getElementById('long-input').value;
+  
+  
+  let min = Number(minutesDisplay.innerHTML);
+  let sec = Number(secondsDisplay.innerHTML);
+  
+
+
+  if(minutesDisplay.innerHTML =='0' && secondsDisplay.innerHTML == "00"){
+    count ++
+    if(count%6 === 0){
+      min = longBreakTime;
+      longBreakBtn.classList.add('active')
+      focusBtn.classList.remove('active')
+      playSound(alertSound)
+    } else if (count%2 === 0){
+      min = breakTime;
+      breakBtn.classList.add('active');
+      focusBtn.classList.remove('active');
+      playSound(alertSound)
+    } else {
+      min = workTime;
+      focusBtn.classList.add('active')
+      breakBtn.classList.remove('active')
+      longBreakBtn.classList.remove('active')
+      playSound(alertSound)
+    }
+  }
+
+  
+
+  if(secondsDisplay.innerHTML == '00') {
+    sec = 59;
+    convertSec(sec)
+    min --
+    convertMin(min)
+    return
+  } 
+
+  
+
+  
+  sec --
+  convertSec(sec)
+
 }
 
 // settings save changes
@@ -398,7 +460,4 @@ function reset (){
   volumes.forEach(elm => {
     elm.value = 0.5;
   })
-
-
-  
 }
