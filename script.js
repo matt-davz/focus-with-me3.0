@@ -313,7 +313,7 @@ function updateTimes () {
   focusBtn.classList.add('active')
   breakBtn.classList.remove('active')
   longBreakBtn.classList.remove('active')
-  clearTimer()
+  timerWorker.postMessage('stop')
 }
 
 let intervalId
@@ -344,7 +344,6 @@ function playSound (sound){
 const resetIcon = document.getElementById('reset-icon')
 
 resetIcon.addEventListener('click',() => {
-  clearTimer()
   updateTimes()
 } );
 
