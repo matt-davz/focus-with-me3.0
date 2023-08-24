@@ -243,10 +243,6 @@ header{
 }
 
 
-.time button:active{
-    background-color: white;
-    color: black;
-}
 /* main */
 main{
     height: 85%;

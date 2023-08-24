@@ -12,7 +12,6 @@ self.onmessage = function (e) {
 };
 
 function sendElapsedTime() {
-  const currentTime = Date.now();
-  elapsedTime = currentTime - startTime;
-  self.postMessage(elapsedTime);
+  
+  self.postMessage('');
 }

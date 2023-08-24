@@ -361,13 +361,15 @@ const phaseButtons = document.querySelectorAll('.phase');
 const timerWorker = new Worker('timer_worker.js')
 let isTimerRunning = false;
 
-function toggleTimer () {
+function toggleTimer ({target}) {
   if(isTimerRunning) {
     timerWorker.postMessage('stop');
     isTimerRunning = false;
+    target.classList.remove('active');
   } else {
     timerWorker.postMessage('start');
     isTimerRunning = true;
+    target.classList.add('active');
   }
 }
 
@@ -405,22 +407,21 @@ function timer() {
 
   if(minutesDisplay.innerHTML =='0' && secondsDisplay.innerHTML == "00"){
     count ++
+    playSound(alertSound)
     if(count%6 === 0){
       min = longBreakTime;
       longBreakBtn.classList.add('active')
       focusBtn.classList.remove('active')
-      playSound(alertSound)
+     
     } else if (count%2 === 0){
       min = breakTime;
       breakBtn.classList.add('active');
       focusBtn.classList.remove('active');
-      playSound(alertSound)
     } else {
       min = workTime;
       focusBtn.classList.add('active')
       breakBtn.classList.remove('active')
       longBreakBtn.classList.remove('active')
-      playSound(alertSound)
     }
   }
 
