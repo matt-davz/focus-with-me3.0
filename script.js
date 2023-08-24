@@ -342,95 +342,7 @@ function playSound (sound){
     }
 }
 
-function start() {
 
-  if(secondsDisplay.innerHTML === "00"){
-    seconds = 0;
-  }
-
-  if(parseFloat(seconds) == 00){
-    seconds = 59;
-  } else {
-    seconds = parseFloat(secondsDisplay.innerHTML)
-  }
-  
-  workTime = minutesDisplay.innerHTML;
-  breakTime = parseFloat(document.getElementById('short-input').value);
-  longBreakTime = parseFloat(document.getElementById('long-input').value);
-  let workMinutes
-
-  if(parseFloat(workTime) === parseFloat(document.getElementById('long-input').value && breakCount > 0 && breakCount % 6 === 0 )){
-    workMinutes = workTime-1;
-  } else if(parseFloat(workTime) === parseFloat(document.getElementById('focus-input').value)){
-    workMinutes = workTime-1;
-  } else {
-    workMinutes = workTime;
-  }
-  
-  let breakMinutes = breakTime - 1; 
-  let longBreakMinutes = longBreakTime -1;
-  
-
-  // countdown
-  let timerFunction = () => {
-      
-
-      // start
-      
-      document.getElementById('minutes').innerHTML = workMinutes;
-      
-      
-      if(seconds < 10){
-        document.getElementById('seconds').innerHTML = `0${seconds}`;
-      } else {
-        document.getElementById('seconds').innerHTML = seconds;
-      }
-      seconds = seconds - 1;
-      if (seconds === 0) {
-        workMinutes = workMinutes - 1;
-        if (workMinutes === -1) {
-          if (breakCount > 0 && breakCount % 6 === 0) {
-            focusBtn.classList.remove('active');
-            longBreakBtn.classList.add('active');
-            // start long break on every 4th interval
-            workMinutes = longBreakMinutes;
-            breakCount++;
-            prevBreakCount++;
-            // change the panel
-            playSound(alertSound)
-          } else if (breakCount % 2 === 0) {
-            focusBtn.classList.remove('active');
-            breakBtn.classList.add('active');
-            // start break
-            workMinutes = breakMinutes;
-            breakCount++;
-            prevBreakCount++;
-            // change the panel
-            playSound(alertSound)
-          } else {
-            longBreakBtn.classList.remove('active');
-            breakBtn.classList.remove('active');
-            focusBtn.classList.add('active');
-            // continue work
-            workMinutes = parseFloat(document.getElementById('focus-input').value) - 1;
-            breakCount++;
-            prevBreakCount++;
-            // change the panel
-            playSound(alertSound)
-          }
-        }
-        seconds = 59;
-      }
-  }
-
-  // start countdown
-  intervalId = setInterval(timerFunction, 1000); // 1000 = 1s
- 
-}
-
-function clearTimer (){
-  clearInterval(intervalId)
-}
 const resetIcon = document.getElementById('reset-icon')
 
 resetIcon.addEventListener('click',() => {
@@ -442,57 +354,31 @@ resetIcon.addEventListener('click',() => {
 
 const startButton = document.querySelector('.start');
 
-startButton.addEventListener('click', event => {
-  const button = event.target;
-  if(button.classList.contains('active')){
-    button.classList.toggle('active');
-    clearTimer()
-  } else {
-    button.classList.toggle('active');
-    start()
-  }
-})
 
-
-
-
-//changes time on input of new times in settings 
-
-// function changeDisplayTime(){
-//   workTime = parseFloat(document.getElementById('focus-input').value)
-//   breakTime = parseFloat(document.getElementById('short-input').value)
-//   longBreakTime = 15;
-//   document.getElementById('minutes').innerHTML = workTime;
-// }
 
 const phaseButtons = document.querySelectorAll('.phase');
 
-// phaseButtons.forEach(elm => {
-//   elm.addEventListener('click', event => {
-//     const currentButton = event.target.closest('.phase');
-//     document.querySelectorAll('.phase.active').forEach( active => { // unactivates other buttons 
-//       if(active === currentButton){
-//         return 
-//       } else {
-//         active.classList.remove('active')
-//       }
-//     });
-//     if(!currentButton.classList.contains('active')){
-//       currentButton.classList.add('active');
-//     }
-//     if(currentButton.classList.contains('active') && currentButton.id === "focus-btn"){
-//       workTime = parseFloat(document.getElementById('focus-input').value);
-//       minutesDisplay.innerHTML = workTime
-//     } else if(currentButton.classList.contains('active') && currentButton.id === "short-break-btn"){
-//       breakTime = parseFloat(document.getElementById('short-input').value);
-//       minutesDisplay.innerHTML = breakTime
-//     } else if(currentButton.classList.contains('active') && currentButton.id === "long-break-btn"){
-//       longBreakTime = parseFloat(document.getElementById('long-input').value);
-//       minutesDisplay.innerHTML = longBreakTime
-//     }
-//   })
+//timer function 
 
-// })
+const timerWorker = new Worker('timer_worker.js')
+let isTimerRunning = false;
+
+function toggleTimer () {
+  if(isTimerRunning) {
+    timerWorker.postMessage('stop');
+    isTimerRunning = false;
+  } else {
+    timerWorker.postMessage('start');
+    isTimerRunning = true;
+  }
+}
+
+startButton.addEventListener('click', toggleTimer);
+
+timerWorker.onmessage = function (e){
+  const elapsedTime = Math.round(e.data/1000);
+  console.log(`Elapsed time: ${elapsedTime}`)
+}
 
 // settings save changes
 
