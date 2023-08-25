@@ -414,7 +414,7 @@ function timer() {
   }
 
   if(secondsDisplay.innerHTML == '00') {
-    sec = 5;
+    sec = 59;
     convertSec(sec)
     min --
     convertMin(min)
