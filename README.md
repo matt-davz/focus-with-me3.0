@@ -1,6 +1,10 @@
 # focus-with-me3.0
 
-![ScreenShot] (./Screen Shot 2566-08-25 at 12.37.17.png)
+![Alt Text](Screen%20Shot%202566-08-25%20at%2012.37.17.png)
+
 
 ## Live Site:
 https://focus-with-me3-0.vercel.app/
+
+## Orignial Repo: https://github.com/matt-davz/focus-with-me
+Had to create new repo due to git repo being too large to commit changes (1GB :0)
