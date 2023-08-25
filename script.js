@@ -461,3 +461,12 @@ function reset (){
     elm.value = 0.5;
   })
 }
+
+//preloads icons 
+const stopIcon = new Image()
+const speakerOffIcon = new Image()
+const pauseIcon = new Image()
+
+stopIcon.src = './assets/stop.svg';
+speakerOffIcon = './assets/speaker-off-24-filled.svg';
+pauseIcon = './assets/pause-outline.svg'
