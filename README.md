@@ -10,5 +10,5 @@ https://focus-with-me3-0.vercel.app/
 Had to create new repo due to git repo being too large to commit changes (1GB :0)
 
 ## Blog
-[](https://medium.com/@davies.matt.02/focus-with-me-project-ef9d04246220)
+[Focus with me blog](https://medium.com/@davies.matt.02/focus-with-me-project-ef9d04246220)
 Check out what I've learnt.
