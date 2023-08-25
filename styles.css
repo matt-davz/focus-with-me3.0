@@ -740,13 +740,9 @@ footer{
     }
 }
 
-
-
 .bar:nth-child(2){
     animation-delay: 0.2s;
 }
-
-
 
 .bar:nth-child(4){
     animation-delay:0.2s ;

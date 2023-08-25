@@ -91,7 +91,6 @@ toggleButton.forEach(elm => {
 // ---drop down menu --- //
 document.addEventListener('click', e => {
     const isDropDownButton = e.target.matches("[data-dropdown-button]");
-
     if(!isDropDownButton){
       return
     }
@@ -102,9 +101,6 @@ document.addEventListener('click', e => {
     } else {
       currentDropdown.classList.toggle('active');
     }
-    
-    
-
 });
 
 const selectDropDown = document.querySelector('.select-btn')
@@ -343,9 +339,7 @@ function playSound (sound){
 
 const resetIcon = document.getElementById('reset-icon')
 
-resetIcon.addEventListener('click',() => {
-  updateTimes()
-} );
+
 
 //reset and start icons
 
@@ -378,7 +372,7 @@ timerWorker.onmessage = function (){
   timer();
 }
 
-function convertSec (sec) {
+function convertSec (sec) { //displays seconds to DOM
   if(sec < 10){
     secondsDisplay.innerHTML = `0${sec}`
     return
@@ -386,24 +380,19 @@ function convertSec (sec) {
   secondsDisplay.innerHTML = sec
 } 
 
-function convertMin (min) {
+function convertMin (min) { //displays minutes to DOM
   minutesDisplay.innerHTML = min
 }
 
-
-
-let count = 1;
+let count = 1; //break count
 function timer() {
   let workTime = document.getElementById('focus-input').value;
   let breakTime = document.getElementById('short-input').value;
   let longBreakTime = document.getElementById('long-input').value;
   
-  
   let min = Number(minutesDisplay.innerHTML);
   let sec = Number(secondsDisplay.innerHTML);
   
-
-
   if(minutesDisplay.innerHTML =='0' && secondsDisplay.innerHTML == "00"){
     count ++
     playSound(alertSound)
@@ -424,22 +413,16 @@ function timer() {
     }
   }
 
-  
-
   if(secondsDisplay.innerHTML == '00') {
-    sec = 59;
+    sec = 5;
     convertSec(sec)
     min --
     convertMin(min)
     return
   } 
 
-  
-
-  
   sec --
   convertSec(sec)
-
 }
 
 // settings save changes
@@ -479,6 +462,16 @@ let loadingPage = document.getElementById('load')
 
 window.addEventListener('load', () => {
   if (backgroundImage.complete) {
-    loadingPage.style.display = 'none'; // or 'visibility: hidden;'
+    loadingPage.style.display = 'none';
   }
 });
+
+resetIcon.addEventListener('click',() => {
+  updateTimes()
+  minutesDisplay.innerHTML = document.getElementById('focus-input').value;
+  count = 1;
+  focusBtn.classList.add('active');
+  breakBtn.classList.remove('active');
+  longBreakBtn.classList.remove('active');
+  isTimerRunning = false;
+} );
