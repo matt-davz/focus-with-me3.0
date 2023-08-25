@@ -468,5 +468,17 @@ const speakerOffIcon = new Image()
 const pauseIcon = new Image()
 
 stopIcon.src = './assets/stop.svg';
-speakerOffIcon = './assets/speaker-off-24-filled.svg';
-pauseIcon = './assets/pause-outline.svg'
+speakerOffIcon.src = './assets/speaker-off-24-filled.svg';
+pauseIcon.src = './assets/pause-outline.svg';
+
+//loading for background img
+let backgroundImage = new Image();
+backgroundImage.src = './assets/penthouse.jpg'
+
+let loadingPage = document.getElementById('load')
+
+window.addEventListener('load', () => {
+  if (backgroundImage.complete) {
+    loadingPage.style.display = 'none'; // or 'visibility: hidden;'
+  }
+});
